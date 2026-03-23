@@ -4,81 +4,84 @@
       "id": 1,
       "name": "PORT Designs",
       "description": "Refonte complète d'un site ecommerce et migration.",
-      "image": "portdesigns.png",
-      "technologies": ["PHP", "Smarty", "Prestashop", "SQL (MariaDB)", "Git"],
+      "image": "portdesigns/portdesigns1.png",
+      "images": [
+        "portdesigns/portdesigns1.png",
+        "portdesigns/portdesigns2.png",
+        "portdesigns/portdesigns3.png",
+        "portdesigns/portdesigns4.png"
+      ],
+      "technologies": [
+        "PHP",
+        "Smarty",
+        "Prestashop",
+        "SQL (MariaDB)",
+        "Git",
+        "cPanel",
+        "phpMyAdmin"
+      ],
       "href": "https://portdesigns.com",
       "date": "2025-10-01"
     },
     {
       "id": 2,
-      "name": "Project Van Gogh",
-      "description": "A mobile app for tracking fitness activities and health metrics.",
-      "image": "projectvangogh.png",
+      "name": "Projet Van Gogh",
+      "description": "Site web dynamique en PHP, en mettant en œuvre de nombreuses fonctionnalités modernes et en respectant les bonnes pratiques de développement.",
+      "image": "projectvangogh/projectvangogh.png",
+      "images": ["projectvangogh/projectvangogh.png"],
       "technologies": ["PHP Native", "Bootstrap", "SQLite", "MySQL"],
-      "href": "/projects/vangogh",
       "date": "2025-03-01"
-    },
-    {
-      "id": 3,
-      "name": "Nouvel emploi du temps Wigor EPSI",
-      "description": "Viewing schedules efficiently and more visually.",
-      "image": "emploidutemps.png",
-      "technologies": ["React", "HTTP"],
-      "href": "/projects/emploidutemps",
-      "date": "2026-03-01"
     },
     {
       "id": 4,
       "name": "E-Commerce Django",
-      "description": "Full-stack e-commerce solution with payment integration.",
-      "image": "ecommercedjango.png",
+      "description": "Site E-Commerce en Django",
+      "images": ["ecommercedjango/ecommercedjango.png"],
+      "image": "ecommercedjango/ecommercedjango.png",
       "technologies": ["Python", "Django", "SQLite"],
-      "href": "/projects/ecommerce",
       "date": "2025-03-01"
     },
     {
       "id": 5,
-      "name": "Flappy Bird Clone",
-      "description": "A game inspired by the popular Flappy Bird.",
-      "image": "flappybirdclone.png",
+      "name": "Clone Flappy Bird",
+      "description": "Un jeu inspiré du populaire Flappy Bird.",
+      "images": ["portdesigns/portdesignsold.png"],
+      "image": "portdesigns/portdesignsold.png",
       "technologies": ["C++", "SFML"],
-      "href": "/projects/flappybird",
       "date": "2025-05-01"
     },
     {
       "id": 6,
       "name": "Cartes Pokémon Réalistes",
-      "description": "Full-stack e-commerce solution with payment integration.",
-      "image": "cartespokemonrealistes.png",
+      "images": ["cartespokemonrealistes/cartespokemonrealistes.png"],
+      "description": "Projet CSS avancé pour créer des cartes Pokémon réalistes, mettant en œuvre des techniques de design et d'animation pour reproduire fidèlement l'apparence des cartes physiques.",
+      "image": "cartespokemonrealistes/cartespokemonrealistes.png",
       "technologies": ["HTML/CSS", "JavaScript"],
-      "href": "/projects/cartespokemonrealistes",
       "date": "2024-09-01"
     },
     {
       "id": 7,
-      "name": "Notea - Application de prise de notes",
-      "description": "Note application for organizing and managing notes efficiently.",
-      "image": "notea.png",
+      "name": "Notea - Application de Notes et Liste de Tâches",
+      "description": "Application de gestion des notes et listes de tâches avec priorités et dates d'échéance",
+      "image": "notea/notea1.png",
+      "images": [
+        "notea/notea1.png",
+        "notea/notea2.png",
+        "notea/notea3.png",
+        "notea/notea4.png",
+        "notea/notea5.png",
+        "notea/notea6.png"
+      ],
       "technologies": ["Kotlin", "Android Studio"],
-      "href": "/projects/notea",
       "date": "2025-11-01"
     },
     {
-      "id": 8,
-      "name": "NFC Authentification site",
-      "description": "A web application for managing and authenticating NFC cards.",
-      "image": "nfcauthentification.png",
-      "technologies": ["NFC", "PHP Native"],
-      "href": "/projects/nfcauthentification",
-      "date": "2025-09-01"
-    },
-    {
       "id": 9,
+      "images": ["crudbddjson/crudbddjson.png"],
       "name": "CRUD BDD Json en PHP",
-      "description": "Full-stack e-commerce solution with payment integration.",
-      "image": "crudbddjson.png",
+      "description": "Application CRUD (Create Read Update Delete) en PHP qui gère les données stockées dans un fichier JSON, permettant aux utilisateurs d'effectuer des opérations de base sur les données via une interface web.",
+      "image": "crudbddjson/crudbddjson.png",
       "technologies": ["PHP Native"],
-      "href": "/projects/crudbddjson",
       "date": "2024-04-01"
     }
   ]
