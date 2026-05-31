@@ -1,6 +1,6 @@
-import "./PortfolioAbout.css";
+import "./about.css";
 
-function PortfolioAbout() {
+function About() {
   return (
     <section id="about" className="about-section">
       {/* En-tête */}
@@ -41,8 +41,8 @@ function PortfolioAbout() {
               Diplômé d'un baccalauréat général en Mathématiques et Sciences
               Numériques & Informatique, j'ai poursuivi mon cursus au sein de
               l'école EPSI en me spécialisant dans le{" "}
-              <strong>développement full stack</strong> Data et l'<strong>IA</strong>
-              .
+              <strong>développement full stack</strong> Data et l'
+              <strong>IA</strong>.
             </p>
             <p>
               Mon parcours académique m'a permis de maîtriser les technologies
@@ -140,9 +140,9 @@ function PortfolioAbout() {
           <h3>Objectifs Professionnels</h3>
           <div className="about-text">
             <p>
-              <strong>Devenir développeur full stack et data</strong>,
-              capable de transformer des idées en solutions concrètes. Je
-              recherche des environnements qui me permettront de :
+              <strong>Devenir développeur full stack et data</strong>, capable
+              de transformer des idées en solutions concrètes. Je recherche des
+              environnements qui me permettront de :
             </p>
             <ul className="goals-list">
               <li>Travailler sur des projets de grande envergure</li>
@@ -195,4 +195,4 @@ function PortfolioAbout() {
   );
 }
 
-export default PortfolioAbout;
+export default About;

@@ -1,10 +1,3 @@
-.about-card svg {
-  width: 40px;
-  height: 40px;
-  fill: var(--white);
-  transition: all 0.3s ease;
-}
-
 .project-detail-container {
   min-height: 100vh;
   padding: 2rem;
@@ -160,36 +153,3 @@
   }
 }
 
-/* Light theme adaptations */
-:root.light .back-button {
-  color: var(--white);
-}
-
-:root.light .project-detail-title {
-  color: var(--white);
-}
-
-:root.light .project-detail-date {
-  color: var(--white);
-}
-
-:root.light .project-detail-description h2,
-:root.light .project-detail-tech h2 {
-  color: var(--primary);
-}
-
-:root.light .project-detail-description p {
-  color: var(--white);
-}
-
-:root.light .tech-item {
-  color: var(--white);
-}
-
-:root.light .visit-button {
-  color: var(--white);
-}
-
-:root.light .project-detail-loading {
-  color: var(--white);
-}

@@ -1,8 +1,8 @@
-import "./PortfolioHeader.css";
-import PortfolioNavigation from "../PortfolioNavigation/PortfolioNavigation.jsx";
+import "./header.css";
+import Navigation from "../pfNavigation/navigation.jsx";
 import { useEffect, useRef } from "react";
 
-function PortfolioHeader() {
+function Header() {
   const titleRef = useRef(null);
   const h3Ref = useRef(null);
   const h4Ref = useRef(null);
@@ -149,7 +149,7 @@ function PortfolioHeader() {
 
   return (
     <header className="portfolio-header">
-      <PortfolioNavigation />
+      <Navigation />
       <div className="wrapper">
         <div className="command-line">
           <h2
@@ -163,10 +163,10 @@ function PortfolioHeader() {
         </div>
         <div className="portfolio-subtitle">
           <h3 ref={h3Ref} style={{ visibility: "hidden" }}>
-            Développeur Full Stack & Data/IA
+            Ingénieur Développement Web Full Stack & Data / IA
           </h3>
           <h4 ref={h4Ref} style={{ visibility: "hidden" }}>
-            EPSI - Ecole d'ingénierie informatique - Paris
+            EFREI - Grande École du Numérique - Paris
           </h4>
           <p ref={pRef} style={{ opacity: 0, transition: "opacity 0.3s ease" }}>
             Je suis une personne sérieuse, persévérante et rigoureuse, toujours
@@ -211,13 +211,16 @@ function PortfolioHeader() {
             </svg>
             LinkedIn
           </a>
-          <a
-            href="#contact"
-            className="contact"
-            rel="noopener noreferrer"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+          <a href="#contact" className="contact" rel="noopener noreferrer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-envelope-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
             </svg>
             Contact
           </a>
@@ -282,4 +285,4 @@ function PortfolioHeader() {
   );
 }
 
-export default PortfolioHeader;
+export default Header;

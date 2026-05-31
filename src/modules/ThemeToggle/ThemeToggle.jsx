@@ -1,5 +1,5 @@
+import "./themeToggle.css";
 import { createPortal } from "react-dom";
-import "./ThemeToggle.css";
 
 function ThemeToggle() {
   const toggleTheme = () => {

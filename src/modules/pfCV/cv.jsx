@@ -1,7 +1,8 @@
+import "./cv.css";
 import { useEffect } from "react";
 import pdfUrl from "./../../assets/pdf/romain-poisson-cv.pdf";
 
-function PortfolioCv() {
+function Cv() {
   useEffect(() => {
     window.location.replace(pdfUrl);
   }, []);
@@ -9,4 +10,4 @@ function PortfolioCv() {
   return null;
 }
 
-export default PortfolioCv;
+export default Cv;

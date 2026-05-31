@@ -1,10 +1,10 @@
-import "./PortfolioNavigation.css";
+import "./navigation.css";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { createPortal } from "react-dom";
 import logo from "../../assets/img/logos/portfolio-logo-rp.png";
 
-function PortfolioNavigation() {
+function Navigation() {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -112,6 +112,13 @@ function PortfolioNavigation() {
                   Projets
                 </a>
                 <a
+                  href="/#career"
+                  className="mobile-nav-link"
+                  onClick={closeMobileMenu}
+                >
+                  Career
+                </a>
+                <a
                   href="/#about"
                   className="mobile-nav-link"
                   onClick={closeMobileMenu}
@@ -134,6 +141,9 @@ function PortfolioNavigation() {
           </a>
           <a href="/#projects" className="nav-link">
             Projects
+          </a>
+          <a href="/#career" className="nav-link">
+            Career
           </a>
           <a href="/#about" className="nav-link">
             About
@@ -232,4 +242,4 @@ function PortfolioNavigation() {
   );
 }
 
-export default PortfolioNavigation;
+export default Navigation;

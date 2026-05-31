@@ -1,6 +1,6 @@
+import "./projectCard.css";
 import { Link } from "react-router-dom";
 import { getProjectThumbnail } from "./imageLoader";
-import "./ProjectCard.css";
 
 // Fonction pour créer un slug à partir du titre
 const createSlug = (title) => {

@@ -1,5 +1,5 @@
+import "./contact.css";
 import { useState, useEffect } from "react";
-import "./PortfolioContact.css";
 
 // Délai minimum entre deux envois (en millisecondes)
 const SPAM_COOLDOWN = 5000; // 5 secondes
@@ -7,7 +7,7 @@ const MAX_MESSAGES_PER_DAY = 3;
 const STORAGE_KEY = "lastFormSubmit";
 const STORAGE_MESSAGES_KEY = "formSubmitCount";
 
-function PortfolioContact() {
+function Contact() {
   const [formData, setFormData] = useState({
     email: "",
     object: "",
@@ -226,10 +226,19 @@ function PortfolioContact() {
 
       <div className="contact-unavailable">
         <span className="contact-unavailable-icon">🚧</span>
-        <p className="contact-unavailable-title">Formulaire temporairement indisponible</p>
+        <p className="contact-unavailable-title">
+          Formulaire temporairement indisponible
+        </p>
         <p className="contact-unavailable-text">
-          Cette fonctionnalité est en cours de développement. En attendant, vous pouvez me contacter directement à l'adresse{" "}
-          <a href="mailto:romain.pson@gmail.com" className="contact-unavailable-link">romain.pson@gmail.com</a>.
+          Cette fonctionnalité est en cours de développement. En attendant, vous
+          pouvez me contacter directement à l'adresse{" "}
+          <a
+            href="mailto:romain.pson@gmail.com"
+            className="contact-unavailable-link"
+          >
+            romain.pson@gmail.com
+          </a>
+          .
         </p>
       </div>
 
@@ -283,4 +292,4 @@ function PortfolioContact() {
   );
 }
 
-export default PortfolioContact;
+export default Contact;
