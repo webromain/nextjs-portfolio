@@ -1,9 +1,9 @@
+import "./projectDetail.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import projectsData from "../projects.json";
-import ImageGallery from "../ImageGallery";
+import ImageGallery from "../imageGallery";
 import { loadProjectImages } from "../imageLoader";
-import "./ProjectDetail.css";
 
 // Fonction pour créer un slug à partir du titre
 const createSlug = (title) => {

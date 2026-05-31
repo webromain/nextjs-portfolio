@@ -108,19 +108,3 @@
   margin-top: auto;
 }
 
-/* Light theme adaptations */
-:root.light .project-card-title {
-  color: var(--white);
-}
-
-:root.light .project-card-description {
-  color: var(--white);
-}
-
-:root.light .project-card-date {
-  color: var(--white);
-}
-
-:root.light .tech-badge {
-  color: var(--reel-white);
-}

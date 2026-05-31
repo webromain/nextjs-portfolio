@@ -1,0 +1,80 @@
+.career-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.experience {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.experience-section {
+  display: flex;
+  gap: 4rem;
+  margin-left: 2rem;
+}
+
+.experience-section:has(.experience:hover) {
+  --primary: var(--secondary);
+  --primary-dark: var(--secondary-dark);
+  --primary-light: var(--secondary-light);
+}
+
+.experience-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.experience-timeline {
+  width: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.experience-bullet {
+  width: 18px;
+  height: 20px;
+  background-color: var(--primary);
+  border-radius: 8px;
+}
+
+.experience-bar {
+  height: 100%;
+  width: 4px;
+  background-color: var(--primary-dark);
+  border-radius: 2px;
+}
+
+.experience-type {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+.experience-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-light);
+}
+.experience-company {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+}
+.experience-period {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--white);
+}
+.experience-description {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--white);
+}

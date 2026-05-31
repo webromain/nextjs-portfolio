@@ -1,6 +1,6 @@
-import "./PortfolioFooter.css";
+import "./footer.css";
 
-function PortfolioFooter() {
+function Footer() {
   return (
     <footer className="portfolio-footer">
       <p>© 2026 Romain POISSON. All rights reserved.</p>
@@ -8,4 +8,4 @@ function PortfolioFooter() {
   );
 }
 
-export default PortfolioFooter;
+export default Footer;

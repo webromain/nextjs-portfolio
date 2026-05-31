@@ -1,7 +1,7 @@
+import "./projectsList.css";
 import { useState, useEffect } from "react";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "./projectCard";
 import projectsData from "./projects.json";
-import "./ProjectsList.css";
 
 function ProjectsList() {
   const [projects, setProjects] = useState([]);
