@@ -1,5 +1,6 @@
+'use client'
 import "./projectDetail.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import projectsData from "../projects.json";
 import ImageGallery from "../imageGallery";
@@ -14,25 +15,23 @@ const createSlug = (title) => {
     .replaceAll(/\s+/g, "-");
 };
 
-function ProjectDetail() {
-  const { projectSlug } = useParams();
-  const navigate = useNavigate();
+function ProjectDetail({ slug }) {
+  const router = useRouter();
   const [project, setProject] = useState(null);
   const [projectImages, setProjectImages] = useState([]);
 
   useEffect(() => {
-    // Chercher le projet par slug
     const foundProject = projectsData.projects.find(
-      (p) => createSlug(p.name) === projectSlug,
+      (p) => createSlug(p.name) === slug,
     );
     if (foundProject) {
       setProject(foundProject);
       const images = loadProjectImages(foundProject);
       setProjectImages(images);
     } else {
-      navigate("/");
+      router.push("/");
     }
-  }, [projectSlug, navigate]);
+  }, [slug, router]);
 
   if (!project) {
     return <div className="project-detail-loading">Chargement...</div>;
@@ -40,7 +39,7 @@ function ProjectDetail() {
 
   return (
     <div className="project-detail-container">
-      <button className="back-button" onClick={() => navigate("/")}>
+      <button className="back-button" onClick={() => router.push("/")}>
         ← Retour aux projets
       </button>
 

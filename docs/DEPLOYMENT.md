@@ -1,12 +1,12 @@
-# 🐳 Déploiement et CI/CD
+# Déploiement et CI/CD
 
 ## Architecture de production
 
 ```
 ┌─────────────────┐     ┌───────────────────┐
 │  nginx-proxy    │────▶│  portfolio-app    │
-│  (reverse proxy │     │  (serve -s dist)  │
-│  + Let's Encrypt│     │  port 3000        │
+│  (reverse proxy │     │  (nginx:stable)   │
+│  + Let's Encrypt│     │  port 80          │
 │  HTTPS auto)    │     └───────────────────┘
 └─────────────────┘
                         ┌───────────────────┐
@@ -21,8 +21,8 @@
 
 ## Dockerfile (multi-stage)
 
-- **Stage 1 (builder)** : `node:20-alpine`, `npm ci`, `npm run build`
-- **Stage 2 (production)** : `node:20-alpine`, `serve -s dist`, utilisateur non-root `appuser`
+- **Stage 1 (builder)** : `node:22-alpine`, `npm ci`, `npm run build` → génère `out/`
+- **Stage 2 (production)** : `nginx:stable-alpine`, sert `out/` sur le port 80
 
 ---
 
@@ -119,7 +119,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\setup.ps1 -InstallNode
 powershell -ExecutionPolicy Bypass -File .\scripts\setup.ps1 -InstallNode -Start
 ```
 
-Actions : vérifie Node.js, `npm ci`, configure Tailwind si absent, installe react-snowfall.
+Actions : vérifie Node.js, `npm ci`, configure Tailwind si absent.
 
 ---
 
@@ -130,11 +130,11 @@ Actions : vérifie Node.js, `npm ci`, configure Tailwind si absent, installe rea
 npm run build
 
 # Prévisualisation du build
-npm run preview
+npm run start
 
 # Build Docker local
 docker build -t portfolio-test .
-docker run -p 3000:3000 portfolio-test
+docker run -p 8080:80 portfolio-test
 ```
 
 ---

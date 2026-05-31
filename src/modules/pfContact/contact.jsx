@@ -1,3 +1,4 @@
+'use client'
 import "./contact.css";
 import { useState, useEffect } from "react";
 

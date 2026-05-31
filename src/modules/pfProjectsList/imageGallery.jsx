@@ -1,3 +1,4 @@
+'use client'
 import "./imageGallery.css";
 import { useState } from "react";
 

@@ -103,7 +103,7 @@
 #root {
   width: 100%;
   max-width: 100%;
-  border-radius: var(--soft-border);
+  border-radius: 0;
   border: 1px solid var(--neutral);
   overflow: hidden;
   background: linear-gradient(
@@ -127,7 +127,7 @@ html {
 
 body {
   display: block;
-  margin: 1rem;
+  margin: 0;
   background: linear-gradient(
     135deg,
     var(--primary-darker),
@@ -153,17 +153,13 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: none;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: var(--primary);
   cursor: pointer;
-}
-
-button:hover {
-  border-color: var(--primary-dark);
 }
 
 button:focus,
@@ -253,7 +249,7 @@ button:focus-visible {
 .card {
   background: var(--gradient-card);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(var(--primary-rgb), 0.4);
+  border: 1px solid transparent;
   border-radius: 16px;
   padding: 2rem;
   transition: all 0.3s ease;
@@ -268,7 +264,7 @@ button:focus-visible {
 .card--soft:hover {
   transform: none;
   box-shadow: none;
-  border-color: rgba(var(--primary-rgb), 0.4);
+  border-color: transparent;
 }
 
 /* =====================================================
@@ -279,7 +275,7 @@ button:focus-visible {
 .badge {
   display: inline-block;
   background: var(--primary);
-  border: 1px solid rgba(var(--primary-rgb), 0.4);
+  border: 1px solid transparent;
   color: var(--reel-white);
   padding: 0.375rem 0.75rem;
   border-radius: var(--soft-border);
@@ -319,24 +315,20 @@ button:focus-visible {
 
 .btn-outline {
   background: transparent;
-  border: 1px solid rgba(var(--primary-rgb), 0.5);
   color: var(--white);
 }
 
 .btn-outline:hover {
-  border-color: rgba(var(--primary-rgb), 0.8);
   background: rgba(var(--primary-rgb), 0.1);
 }
 
 .btn-ghost {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--white);
 }
 
 .btn-ghost:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* =====================================================

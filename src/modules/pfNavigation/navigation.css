@@ -30,7 +30,7 @@
 
 .navigation-container nav .nav-link:hover {
   color: var(--secondary);
-  padding: 0 1rem;
+  transform: scale(1.1);
 }
 
 .navigation-container nav .logo {
@@ -58,6 +58,10 @@
 
 .navigation-container .options > a {
   cursor: pointer;
+}
+
+.navigation-container .options > a:hover {
+  transform: scale(1.2);
 }
 
 .navigation-container .h1-container {
@@ -105,7 +109,6 @@
 
 .popup {
   background: var(--black-dark);
-  border: 1px solid rgba(var(--primary-rgb), 0.3);
   border-radius: var(--soft-border);
   padding: 2rem;
   max-width: 500px;
@@ -140,34 +143,29 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
 }
 
 .popup-btn.confirm {
   background: var(--black-dark);
-  border: 1px solid rgba(var(--primary-rgb), 0.5);
   color: var(--white);
 }
 
 .popup-btn.confirm:hover {
   background: var(--black-dark);
-  border-color: rgba(var(--primary-rgb), 0.8);
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .popup-btn.cancel {
   background: transparent;
-  border: 1px solid rgba(var(--white), 0.3);
   color: var(--white);
 }
 
 .popup-btn.cancel:hover {
   background: rgba(var(--white), 1);
-  border-color: rgba(var(--white), 0.6);
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-@media (width < 1024px) {
+@media (max-width: 1120px) {
   .navigation-container {
     padding: 1rem;
   }
@@ -193,7 +191,33 @@
   }
 }
 
-@media (width < 768px) {
+@media (max-width: 900px) {
+  .navigation-container {
+    padding: 0.8rem;
+  }
+
+  .navigation-container nav {
+    gap: 0.2rem;
+  }
+
+  .navigation-container .h1-container h1 {
+    font-size: 0.7rem;
+  }
+
+  .navigation-container nav .nav-link {
+    font-size: 0.75rem;
+  }
+
+  .navigation-container .options {
+    gap: 0.8rem;
+  }
+
+  .navigation-container .options > a > svg {
+    height: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
   /* Cacher la navigation desktop */
   .navigation-container nav {
     display: none;
@@ -228,13 +252,13 @@
     border-radius: 2px;
     transition: all 0.3s ease;
   }
-  .burger-menu.open span:first-child{
+  .burger-menu.open span:first-child {
     transform: rotate(45deg) translateY(5px) translateX(5px);
   }
-  .burger-menu.open span:nth-child(2){
+  .burger-menu.open span:nth-child(2) {
     transform: rotate(-45deg);
   }
-  .burger-menu.open span:last-child{
+  .burger-menu.open span:last-child {
     transform: rotate(-45deg) translateY(-5px) translateX(5px);
     opacity: 0;
   }
@@ -325,7 +349,7 @@
   .mobile-nav-link:hover {
     background-color: rgba(var(--primary-rgb), 0.1);
     color: var(--secondary);
-    padding-left: 1.5rem;
+    transform: scale(1.1);
   }
 
   .navigation-container {

@@ -1,31 +1,23 @@
+'use client'
 import "./navigation.css";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
-import logo from "../../assets/img/logos/portfolio-logo-rp.png";
 
 function Navigation() {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
-  // Fonction pour vérifier le vrai état du fullscreen
-  const checkFullScreenState = () => {
-    const margin = getComputedStyle(document.body).margin;
-    return margin === "0px";
-  };
+  const checkFullScreenState = () => getComputedStyle(document.body).margin === "0px";
 
-  // Vérifier l'état réel du fullscreen au chargement et à chaque changement de route
   useEffect(() => {
     setIsFullScreen(checkFullScreenState());
-  }, [location, location.hash]);
+  }, [pathname]);
 
-  // Écouter aussi les changements de hash directement
   useEffect(() => {
-    const handleHashChange = () => {
-      setIsFullScreen(checkFullScreenState());
-    };
+    const handleHashChange = () => setIsFullScreen(checkFullScreenState());
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
@@ -33,18 +25,13 @@ function Navigation() {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const handleFullScreen = () => {
-    const themeButton = document.querySelector(".theme");
     const backNav = document.getElementById("root");
     if (isFullScreen) {
-      document.body.style.margin = "";
-      document.body.style.borderRadius = "var(--soft-border)";
-      if (themeButton) themeButton.style.right = "30px";
+      document.body.style.margin = "1rem";
       if (backNav) backNav.style.borderRadius = "var(--soft-border)";
       setIsFullScreen(false);
     } else {
       document.body.style.margin = "0";
-      document.body.style.borderRadius = "0";
-      if (themeButton) themeButton.style.right = "14px";
       if (backNav) backNav.style.borderRadius = "0";
       setIsFullScreen(true);
     }
@@ -134,7 +121,7 @@ function Navigation() {
       <div className="navigation-container">
         <nav className="navigation">
           <a href="/" className="nav-link logo">
-            <img src={logo} alt="Logo" />
+            <img src="/assets/img/logos/portfolio-logo-rp.png" alt="Logo" />
           </a>
           <a href="/#contact" className="nav-link">
             Contact
@@ -159,11 +146,11 @@ function Navigation() {
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-arrow-down"
+              className="bi bi-arrow-down"
               viewBox="0 0 16 16"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
               />
             </svg>
@@ -175,7 +162,7 @@ function Navigation() {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-fullscreen-exit"
+                className="bi bi-fullscreen-exit"
                 viewBox="0 0 16 16"
               >
                 <path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5m5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5M0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5m10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0z" />
@@ -186,7 +173,7 @@ function Navigation() {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-fullscreen"
+                className="bi bi-fullscreen"
                 viewBox="0 0 16 16"
               >
                 <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5M.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5" />
@@ -199,7 +186,7 @@ function Navigation() {
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-x-lg"
+              className="bi bi-x-lg"
               viewBox="0 0 16 16"
             >
               <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
