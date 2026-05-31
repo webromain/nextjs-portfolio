@@ -2,7 +2,7 @@
 
 ## Structure des données
 
-Les projets sont définis dans `src/modules/ProjectsList/projects.json` :
+Les projets sont définis dans `src/modules/pfProjectsList/projects.json` :
 
 ```json
 {

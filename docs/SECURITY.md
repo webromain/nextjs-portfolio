@@ -4,12 +4,12 @@
 
 | Mesure | Détail |
 |--------|--------|
-| **Content-Security-Policy** | Meta tag CSP dans `index.html` |
+| **Content-Security-Policy** | À configurer dans `next.config.mjs` (headers) |
 | **Referrer-Policy** | `strict-origin-when-cross-origin` |
-| **XSS** | Pas de `dangerouslySetInnerHTML`, pas de `eval()` |
+| **XSS** | `dangerouslySetInnerHTML` utilisé uniquement pour le script d'init thème (contenu statique hardcodé) |
 | **Liens externes** | `rel="noopener noreferrer"` sur tous les `target="_blank"` |
 | **Iframe sandboxé** | `sandbox="allow-scripts allow-same-origin"` + validation HTTPS |
-| **Docker non-root** | Utilisateur `appuser` dans le container de prod |
+| **Docker non-root** | `nginx:stable-alpine` tourne avec l'utilisateur `nginx` par défaut |
 | **Docker socket** | Monté en `:ro` + `no-new-privileges` |
 | **Webhook** | Vérification signature HMAC-SHA256, secrets en env vars |
 | **localStorage** | `JSON.parse` protégé par `try/catch` |

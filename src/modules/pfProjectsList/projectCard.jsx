@@ -1,5 +1,6 @@
+'use client'
 import "./projectCard.css";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { getProjectThumbnail } from "./imageLoader";
 
 // Fonction pour créer un slug à partir du titre
@@ -33,7 +34,7 @@ function ProjectCard({ project }) {
   const imageUrl = getProjectThumbnail(project);
 
   return (
-    <Link to={`/projects/${projectSlug}`} className="project-card-link">
+    <Link href={`/projects/${projectSlug}`} className="project-card-link">
       <div className="project-card">
         <div className="project-card-image">
           <img
@@ -57,7 +58,7 @@ function ProjectCard({ project }) {
             ))}
           </div>
           <p className="project-card-date">
-            {new Date(date).toLocaleDateString()}
+            {new Date(date).toLocaleDateString('fr-FR')}
           </p>
         </div>
       </div>

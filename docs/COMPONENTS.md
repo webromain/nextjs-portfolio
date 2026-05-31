@@ -1,141 +1,130 @@
-# 🧩 Modules et composants
+# Modules et composants
 
-## PortfolioHeader
+## pfHeader — "use client"
 
-**Chemin** : `src/modules/PortfolioHeader/`
+**Chemin** : `src/modules/pfHeader/header.jsx`
 
-Header principal affiché uniquement sur la page d'accueil. Contient :
-- Animation typewriter progressive (titre, sous-titre)
-- Liens sociaux (GitHub, LinkedIn, Instagram)
-- Lien vers le CV
-- Liste des compétences (badges animés)
+Header affiché uniquement sur la page d'accueil. Inclut `pfNavigation` en interne.
+
+- Animation typewriter progressive (titre → h3 → h4 → paragraphe)
+- Liens sociaux (GitHub, LinkedIn, Contact, CV)
+- Badges de compétences
 
 **Props** : aucune
 
 ---
 
-## PortfolioNavigation
+## pfNavigation — "use client"
 
-**Chemin** : `src/modules/PortfolioNavigation/`
+**Chemin** : `src/modules/pfNavigation/navigation.jsx`
 
-Barre de navigation affichée sur toutes les pages sauf l'accueil. Liens vers : Accueil, Contact, À propos, CV.
+Navigation desktop + mobile (burger menu avec portal). Utilisée sur les pages secondaires et incluse dans pfHeader sur l'accueil.
 
----
-
-## ProjectsList
-
-**Chemin** : `src/modules/ProjectsList/ProjectsList.jsx`
-
-Grille responsive de cartes projets. Charge les données depuis `projects.json` et rend un `ProjectCard` par projet.
-
-```jsx
-<ProjectsList />
-```
+- `usePathname()` (next/navigation) pour détecter les changements de route
+- Bouton fullscreen + popup confirmation
 
 ---
 
-## ProjectCard
+## pfProjectsList — Server Component
 
-**Chemin** : `src/modules/ProjectsList/ProjectCard.jsx`
+**Chemin** : `src/modules/pfProjectsList/projectsList.jsx`
 
-Carte individuelle d'un projet avec image, technologies (badges), date et lien vers le détail.
+Lit `projects.json` directement (pas de `useState`/`useEffect`) et rend la grille de `ProjectCard`.
 
-**Props** :
+---
+
+## ProjectCard — "use client"
+
+**Chemin** : `src/modules/pfProjectsList/projectCard.jsx`
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `project` | `object` | Objet projet complet (voir [GALLERY.md](GALLERY.md)) |
+| `project` | `object` | Objet projet (voir [GALLERY.md](GALLERY.md)) |
 
-**Interactions** :
-- **Hover** : translate Y(-8px), changement de border, ombre
-- **Click** : navigation vers `/projects/{slug}`
-- **Image hover** : scale(1.05)
+Utilise `next/link` (`<Link href="/projects/{slug}">`).
 
 ---
 
-## ProjectDetail
+## ProjectDetail — "use client"
 
-**Chemin** : `src/modules/ProjectsList/pages/ProjectDetail.jsx`
+**Chemin** : `src/modules/pfProjectsList/details/projectDetail.jsx`
 
-Page détail d'un projet. Utilise le slug de l'URL pour trouver le projet dans `projects.json`. Affiche la description complète, les technologies, la galerie d'images, et un lien externe optionnel.
-
-Si le projet a un champ `demoUrl` (HTTPS uniquement), un iframe sandboxé est affiché.
-
----
-
-## ImageGallery
-
-**Chemin** : `src/modules/ProjectsList/ImageGallery.jsx`
-
-Galerie d'images interactive :
-- Navigation par flèches (clavier et souris)
-- Vignettes cliquables
-- Compteur d'images (ex: 2 / 5)
-- Responsive
-
-**Props** :
+Reçoit `slug` en prop depuis `app/projects/[slug]/page.jsx`.
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `images` | `string[]` | Tableau d'URLs d'images |
-| `projectName` | `string` | Nom du projet (attribut alt) |
+| `slug` | `string` | Slug généré depuis le `name` du projet |
 
-Voir le guide complet dans [GALLERY.md](GALLERY.md).
-
----
-
-## ThemeToggle
-
-**Chemin** : `src/modules/ThemeToggle/`
-
-Bouton flottant (rendu via React Portal) pour basculer entre thème clair et sombre. La préférence est persistée dans `localStorage`.
+Utilise `useRouter()` (next/navigation) pour le bouton retour. Si `demoUrl` (HTTPS), affiche un iframe sandboxé.
 
 ---
 
-## PortfolioContact
+## ImageGallery — "use client"
 
-**Chemin** : `src/modules/PortfolioContact/`
+**Chemin** : `src/modules/pfProjectsList/imageGallery.jsx`
 
-Formulaire de contact avec :
-- Validation email (regex) et longueur du message
-- Protection anti-spam côté client (cooldown 5s + limite 3 msg/jour)
-- Actuellement désactivé (backend pas encore connecté)
+| Prop | Type | Description |
+|------|------|-------------|
+| `images` | `string[]` | URLs depuis `public/assets/img/projects/` |
+| `projectName` | `string` | Attribut alt |
 
----
-
-## PortfolioAbout
-
-**Chemin** : `src/modules/PortfolioAbout/`
-
-Section « À propos » avec présentation personnelle.
+Navigation flèches, vignettes cliquables, compteur. Voir [GALLERY.md](GALLERY.md).
 
 ---
 
-## PortfolioCv
+## ThemeToggle — "use client"
 
-**Chemin** : `src/modules/PortfolioCv/`
+**Chemin** : `src/modules/themeToggle/themeToggle.jsx`
 
-Redirige automatiquement vers le fichier PDF du CV via `window.location.href`.
+`<button>` fixe rendu via `createPortal(document.body)` — hors de `#root` pour contourner le `backdrop-filter` qui casse `position: fixed`. Guard `mounted` pour éviter l'erreur SSR.
+
+---
+
+## pfContact — "use client"
+
+**Chemin** : `src/modules/pfContact/contact.jsx`
+
+Formulaire désactivé (backend non connecté). Anti-spam : cooldown 5s + limite 3 msg/jour via `localStorage`.
+
+---
+
+## pfAbout — Server Component
+
+**Chemin** : `src/modules/pfAbout/about.jsx`
+
+Strip profil + stats + stack (badges globaux `.badge`) + objectifs + valeurs.
+
+---
+
+## pfCareer — Server Component
+
+**Chemin** : `src/modules/pfCareer/career.jsx` + `experience.jsx`
+
+Timeline d'expériences. Hover CSS `:has(.experience:hover)` swipe `--primary` → `--secondary`.
+
+---
+
+## pfFooter — Server Component
+
+**Chemin** : `src/modules/pfFooter/footer.jsx`
 
 ---
 
 ## Graphe de dépendances
 
 ```
-App (main.jsx)
-├── Router (react-router-dom)
-├── ScrollToTop
-├── ThemeToggle (React Portal)
-└── Layout
-    ├── PortfolioHeader (accueil uniquement)
-    ├── PortfolioNavigation (autres pages)
-    ├── {children}
-    │   ├── ProjectsList
-    │   │   └── ProjectCard[] → Link → /projects/:slug
-    │   ├── ProjectDetail
-    │   │   └── ImageGallery
-    │   ├── PortfolioContact
-    │   ├── PortfolioAbout
-    │   └── PortfolioCv
-    └── PortfolioFooter
+app/layout.jsx
+├── ThemeToggle → createPortal(document.body)
+└── {children}
+    ├── app/page.jsx
+    │   ├── pfHeader → pfNavigation
+    │   ├── pfProjectsList → ProjectCard[] → next/link → /projects/:slug
+    │   ├── pfContact
+    │   ├── pfCareer → Experience[]
+    │   ├── pfAbout
+    │   └── pfFooter
+    └── app/projects/[slug]/page.jsx
+        ├── pfNavigation
+        ├── ProjectDetail(slug) → ImageGallery
+        └── pfFooter
 ```

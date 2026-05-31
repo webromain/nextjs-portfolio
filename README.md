@@ -1,48 +1,32 @@
-# 🚀 Portfolio — Romain POISSON
+# Portfolio — Romain POISSON
 
-Portfolio personnel de développeur Full Stack, construit avec **React 19**, **Vite 7**, **Tailwind CSS** et déployé via **Docker** + **Portainer** avec auto-déploiement sur push GitHub.
+Portfolio personnel de développeur Full Stack, construit avec **Next.js 16** (App Router), **React 19**, **Tailwind CSS** et déployé via **Docker** + **Portainer** avec auto-déploiement sur push GitHub.
 
-🌐 **Production** : [portfolio.romainpoisson.com](https://portfolio.romainpoisson.com)
-
----
-
-## 📋 Documentation
-
-| Doc | Contenu |
-|-----|---------|
-| 📖 **[Architecture](docs/ARCHITECTURE.md)** | Arborescence, flux de données, routing, thème, styles et design |
-| 🧩 **[Composants](docs/COMPONENTS.md)** | Tous les modules React : props, comportement, graphe de dépendances |
-| 🖼️ **[Galerie & Projets](docs/GALLERY.md)** | Ajouter un projet, gérer les images, structure du JSON |
-| 🐳 **[Déploiement](docs/DEPLOYMENT.md)** | Docker, Portainer, git-poller, webhook, scripts utilitaires |
-| 🔐 **[Sécurité](docs/SECURITY.md)** | Mesures en place, audit, variables d'environnement |
+**Production** : [portfolio.romainpoisson.com](https://portfolio.romainpoisson.com)
 
 ---
 
-## 🛠️ Stack technique
+## Stack technique
 
 | Catégorie | Technologie |
 |-----------|-------------|
-| **Framework** | React 19.2 |
-| **Bundler** | Vite 7.3 (SWC) |
-| **Routing** | React Router DOM 7.12 |
-| **CSS** | Tailwind CSS 3.4 + CSS custom |
+| **Framework** | Next.js 16.2 (App Router, `output: export`) |
+| **UI** | React 19.2 |
+| **Bundler** | Turbopack (intégré Next.js) |
+| **Routing** | File-based — dossier `app/` |
+| **CSS** | Tailwind CSS 3.4 + CSS variables custom |
 | **Linting** | ESLint 9 + eslint-plugin-react-hooks |
-| **Conteneurisation** | Docker multi-stage (node:20-alpine) |
-| **Serveur prod** | `serve` (SPA statique) |
+| **Conteneurisation** | Docker multi-stage (node:22-alpine + nginx:stable-alpine) |
+| **Serveur prod** | nginx (fichiers statiques) |
 | **Reverse proxy** | nginx-proxy + Let's Encrypt (HTTPS auto) |
 | **Orchestration** | Docker Compose + Portainer |
 | **CI/CD** | Git Poller (polling GitHub API toutes les 5 min) |
 
 ---
 
-## ⚡ Démarrage rapide
+## Démarrage rapide
 
-### Prérequis
-
-- **Node.js** ≥ 18 LTS
-- **npm** ≥ 9
-
-### En 3 commandes
+**Prérequis** : Node.js ≥ 20 LTS, npm ≥ 9
 
 ```bash
 git clone https://github.com/webromain/react-portfolio.git
@@ -51,82 +35,116 @@ npm install
 npm run dev
 ```
 
-L'app est accessible à **http://localhost:5173**
+L'app est accessible à **http://localhost:3000**
 
-### Script Windows automatisé
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\setup.ps1 -Start
-```
-
-### Commandes disponibles
+### Commandes
 
 | Commande | Description |
 |----------|-------------|
-| `npm run dev` | Serveur de développement avec HMR |
-| `npm run build` | Build de production dans `dist/` |
-| `npm run preview` | Prévisualisation du build de prod |
+| `npm run dev` | Serveur de développement (Turbopack, HMR) |
+| `npm run build` | Build statique → dossier `out/` |
+| `npm run start` | Prévisualisation du build local |
 | `npm run lint` | Vérification ESLint |
 
----
-
-## ✨ Fonctionnalités
-
-- 🖼️ Affichage dynamique des projets avec galerie d'images interactive
-- 🔗 Navigation fluide SPA (React Router v7)
-- 📱 Design responsive (mobile, tablette, desktop)
-- 🌗 Thème clair / sombre persisté
-- ⌨️ Animation typewriter sur le header
-- 📄 Page CV avec téléchargement PDF
-- 📬 Formulaire de contact (préparé, backend en cours)
-- 🐳 Déploiement Docker avec rebuild auto sur push GitHub
+> En production, le git-poller lance `npm run build` dans Docker automatiquement à chaque push. Tu n'utilises que `npm run dev` en local.
 
 ---
 
-## 👨‍💻 Guide rapide de développement
+## Fonctionnalités
+
+- Affichage dynamique des projets avec galerie d'images interactive
+- Routing file-based Next.js (App Router)
+- SSG — pages pré-générées au build pour de meilleures performances et SEO
+- Design responsive (mobile, tablette, desktop)
+- Thème clair / sombre persisté sans flash au chargement
+- Animation typewriter sur le header
+- Page CV avec redirection PDF
+- Formulaire de contact (backend en cours)
+- Déploiement Docker avec rebuild auto sur push GitHub
+
+---
+
+## Structure des routes
+
+```
+app/
+├── layout.jsx           → Layout global (thème, ThemeToggle)
+├── page.jsx             → / (Header + Projets + Contact + Career + About)
+├── projects/[slug]/
+│   └── page.jsx         → /projects/:slug (détail projet)
+└── cv/
+    └── page.jsx         → /cv (redirection PDF)
+```
+
+---
+
+## Guide développement
 
 ### Ajouter un projet
 
-→ Voir [docs/GALLERY.md](docs/GALLERY.md)
+Éditer `src/modules/pfProjectsList/projects.json` et déposer les images dans `public/assets/img/projects/`.
 
-### Ajouter un module
+### Ajouter une page
 
 ```bash
-mkdir src/modules/MonModule
+mkdir app/ma-page
 ```
 
 ```jsx
-// src/modules/MonModule/MonModule.jsx
-import "./MonModule.css";
+// app/ma-page/page.jsx
+import Navigation from '../../src/modules/pfNavigation/navigation'
+import Footer from '../../src/modules/pfFooter/footer'
 
-function MonModule() {
-  return <section id="mon-module">{/* Contenu */}</section>;
+export default function MaPage() {
+  return (
+    <>
+      <Navigation />
+      <section className="section">...</section>
+      <Footer />
+    </>
+  )
 }
-export default MonModule;
 ```
 
-Puis ajouter la route dans `src/main.jsx` :
+### Ajouter un composant
+
+```bash
+mkdir src/modules/pfMonModule
+```
 
 ```jsx
-<Route path="/ma-page" element={<Layout><MonModule /></Layout>} />
+// src/modules/pfMonModule/monModule.jsx
+'use client'              // ← si useState / useEffect / events
+import './monModule.css'
+
+export default function MonModule() {
+  return <section id="mon-module" className="section">...</section>
+}
 ```
 
-### Conventions de nommage
+### Règle "use client"
+
+| Besoin | Directive |
+|--------|-----------|
+| `useState`, `useEffect`, événements DOM | `'use client'` obligatoire |
+| Composant purement HTML / lecture de données | Aucune (Server Component par défaut) |
+
+### Conventions
 
 | Type | Convention | Exemple |
 |------|-----------|---------|
-| Composants React | PascalCase | `ProjectCard.jsx` |
-| Fichiers CSS | PascalCase (même nom) | `ProjectCard.css` |
-| Données JSON | kebab-case | `projects.json` |
-| Classes CSS | kebab-case | `.project-card-title` |
+| Composants React | camelCase (fichier) | `monModule.jsx` |
+| Dossiers modules | camelCase prefixé `pf` | `pfMonModule/` |
+| Fichiers CSS | même nom que le composant | `monModule.css` |
+| Classes CSS | kebab-case | `.mon-module-title` |
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 | Problème | Solution |
 |----------|----------|
-| Le serveur ne démarre pas | `rm -rf node_modules && npm install` |
+| Le serveur ne démarre pas | `rm -rf node_modules .next && npm install` |
 | Les projets ne s'affichent pas | Vérifier la syntaxe JSON de `projects.json` |
 | Les images manquent | Vérifier le chemin dans `public/assets/img/projects/` |
 | Le thème ne se sauvegarde pas | Vérifier que localStorage n'est pas bloqué |
@@ -135,10 +153,8 @@ Puis ajouter la route dans `src/main.jsx` :
 
 ---
 
-## 📝 Licence
+## Licence
 
 Projet personnel — Romain POISSON © 2026
 
----
-
-**Version** : 2.0.0 · **Dernière mise à jour** : 29 Mars 2026
+**Version** : 3.0.0 · **Dernière mise à jour** : Juin 2026

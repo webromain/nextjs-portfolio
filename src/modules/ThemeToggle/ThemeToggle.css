@@ -8,6 +8,8 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
+  border: none;
+  padding: 0;
   background: var(--transparent-back);
   box-shadow: var(--transparent-box-shadow);
   backdrop-filter: var(--transparent-backdrop-filter);
@@ -22,7 +24,6 @@
   color: var(--black-dark);
   transform: translateY(-2px) scale(1.05);
 }
-
 
 @media (max-width: 768px) {
   .theme-toggle {
