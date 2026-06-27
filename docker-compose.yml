@@ -29,11 +29,8 @@ services:
           docker run -d \
             --name $$CONTAINER \
             --restart always \
-            --network nginx-proxy \
+            --network cloudflarezerotrust_default \
             -e NODE_ENV=production \
-            -e VIRTUAL_HOST=portfolio.romainpoisson.com \
-            -e LETSENCRYPT_HOST=portfolio.romainpoisson.com \
-            -e LETSENCRYPT_EMAIL=admin@romainpoisson.com \
             $$IMAGE
         }
 
