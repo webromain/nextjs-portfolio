@@ -21,6 +21,9 @@ FROM nginx:stable-alpine
 # Copier le build depuis le stage builder
 COPY --from=builder /app/out /usr/share/nginx/html
 
+# Cache-control : HTML toujours revalidee, assets hashes en cache immuable
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
