@@ -5,6 +5,12 @@ import ThemeToggle from '../src/modules/themeToggle/themeToggle'
 export const metadata = {
   title: 'Portfolio — Romain POISSON | Développeur Full Stack',
   description: 'Portfolio de Romain POISSON, développeur Full Stack & Data / IA',
+  icons: {
+    icon: [
+      { url: '/logo-rp.svg', type: 'image/svg+xml' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({ children }) {
