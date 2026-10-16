@@ -29,7 +29,7 @@ services:
           docker run -d \
             --name $$CONTAINER \
             --restart always \
-            --network cloudflarezerotrust_default \
+            -p 127.0.0.1:8080:80 \
             -e NODE_ENV=production \
             $$IMAGE
         }
